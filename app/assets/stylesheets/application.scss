@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+
+ .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .post {
+    width: 30%;
+    min-width: 300px;
+    }
