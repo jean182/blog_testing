@@ -2,4 +2,18 @@
 
 <p><%= @post.description %></p>
 
+<div class="container">
+    <h4>Comments</h4>
+    <% @post.comments.each do |comment| %>
+        <%= render @post.comments %>  
+    <% end %>
+
+    <div class="container">
+        <h5>Add a comment:</h2>
+        <%= render 'comments/form' %>
+    </div>
+</div>
+
+
+
 <%= link_to 'Back', posts_path %>

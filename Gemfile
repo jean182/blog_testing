@@ -29,6 +29,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '~> 4.1.3'
 # Jquery
 gem 'jquery-rails'
+# devise auth
+gem 'devise'
+# Pagination
+gem 'will_paginate-bootstrap4'
+# Styling devise with bootstrap
+gem 'devise-bootstrapped'
+# Octicons icons
+gem 'octicons'
+# Octicons helper
+gem 'octicons_helper'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
