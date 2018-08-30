@@ -13,7 +13,8 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    post
+    build_has_categories
   end
 
   def create
@@ -27,9 +28,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
 
-    if @post.update(post_params)
+    if post.update(post_params)
       redirect_to @post
     else
       render :edit
@@ -45,7 +45,17 @@ class PostsController < ApplicationController
 
   private
 
+  def post
+    @post ||= Post.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit(:title, :description)
+    params.require(:post).permit(:title, :description, category_ids: [])
+  end
+
+  def build_has_categories
+    Category.all.each do |category|
+      post.has_categories.build(category_id: category.id)
+    end
   end
 end
