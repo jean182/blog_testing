@@ -1,6 +1,23 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 4)
+  end
+
+  def show
+    category
+  end
+
+  def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      redirect_to @category
+    else
+      render :new
+    end
   end
 
   def edit
@@ -8,8 +25,11 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    category.update(category_params)
-    render :edit
+    if category.update(category_params)
+      redirect_to category
+    else
+      render :edit 
+    end
   end
 
   private
