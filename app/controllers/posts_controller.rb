@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :post, except: [:index, :new, :create]
+  before_action :authenticate_editor!, only:[:new, :create, :update]
+  before_action :authenticate_admin!, only:[:destroy]
   def index
     @posts = Post.paginate(page: params[:page], per_page: 2)
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new
@@ -13,7 +15,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    post
     build_has_categories
   end
 
