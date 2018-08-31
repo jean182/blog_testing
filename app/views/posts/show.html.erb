@@ -2,6 +2,8 @@
 
 <p><%= @post.description %></p>
 
+<%= render 'tags' %>
+
 <div class="container">
     <h4>Comments</h4>
     <% @post.comments.each do |comment| %>

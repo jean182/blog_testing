@@ -39,6 +39,8 @@ gem 'devise-bootstrapped'
 gem 'octicons'
 # Octicons helper
 gem 'octicons_helper'
+# Fontawesome
+gem "font-awesome-rails"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

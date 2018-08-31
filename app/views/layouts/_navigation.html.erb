@@ -32,7 +32,7 @@
         <% if user_signed_in? %>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= octicon "gear", :height => 27, :"aria-label" => "hi", class: 'icon-white' %>
+                    <%= fa_icon "user 2x" %>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <%= link_to('Edit account', edit_user_registration_path, class: "dropdown-item") %>

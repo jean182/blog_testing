@@ -3,7 +3,7 @@
     <%= render 'shared/errors', object: @post.comments.build %>
     <div class="form-group">
         <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
+        <%= form.text_field :commenter, class: "form-control" %>
     </div>
     <div class="form-group">
         <%= form.label :body %><br>

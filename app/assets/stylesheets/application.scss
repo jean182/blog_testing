@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+ @import "font-awesome";
  @import "bootstrap";
 
  .title-container {
@@ -26,14 +26,3 @@
       margin: 0;
     }
   }
-
-  .posts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .post {
-    width: 30%;
-    min-width: 300px;
-    }

@@ -1,0 +1,10 @@
+<h3>Tags</h3>
+<% Category.all.each do |category| %>
+  <% if @post.categories.include?(category) %>
+    <h3 style="display:inline;">
+      <span style="background-color: <%= category.color %>" class="badge badge-secondary">
+        <%= category.name %>
+      </span>
+    </h3>
+  <% end %>
+<% end %>
