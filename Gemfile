@@ -41,6 +41,8 @@ gem 'octicons'
 gem 'octicons_helper'
 # Fontawesome
 gem "font-awesome-rails"
+# WYSIWYG 
+gem 'tinymce-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
