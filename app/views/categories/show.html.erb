@@ -3,7 +3,7 @@
 <% @category.posts.each do |post| %>
   <div class="jumbotron" style='background-color: <%= @category.color %>;'>
     <h3> <%= post.title %> </h3>
-    <p><%= post.description %></p>
+    <p><%= sanitize post.description %></p>
     <%= link_to 'Eliminar', post, method: :delete, class: "btn btn-danger" %>
     <%= link_to "Leer Mas", post, class: "btn btn-primary" %>
   </div>
