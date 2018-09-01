@@ -1,5 +1,6 @@
 <h1>Listing Categories</h1>
 <%= link_to 'New article', new_category_path %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
   <div class="card-deck">
     <% @categories.each do |category| %>
       <div class="card">

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :post, except: [:index, :new, :create]
   before_action :authenticate_editor!, only:[:new, :create, :update]
   before_action :authenticate_admin!, only:[:destroy]
+  before_action :editor_is_post_owner!, only:[:edit]
   def index
     @posts = Post.paginate(page: params[:page], per_page: 2)
   end
@@ -12,6 +13,10 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
@@ -39,9 +44,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-
-    redirect_to posts_path
+    if @post.destroy
+      redirect_to posts_path
+      flash[:success] = "Deleted succesfully."
+    end
   end
 
   private
