@@ -1,37 +1,46 @@
 <% if @posts.present? %>
 <h1>Welcome <%= current_user.email %></h1>
 <div class="table-responsive-sm">
-    <table class="table table-bordered">
-        <thead>    
-            <tr>
-                <th scope="col">Index</th>
-                <th scope="col">Post title</th>
-                <th scope="col">Description</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @posts.each_with_index do |post, i| %>
-            <tr>
-            <th scope="row"><%= i+1 %></th>
-            <td><%= post.title %></td>
-            <td><%= sanitize post.description %></td>
-            <td>
-                <%= link_to 'Show', post_path(post)  %> | 
-                <%= link_to 'Edit', edit_post_path(post) %> |
-                <%= link_to 'Destroy', post_path(post),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-            </td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table
-    <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
-    <p class="text-center"><%= page_entries_info @posts %></p>
+  <table class="table table-bordered">
+    <thead>    
+      <tr>
+        <th scope="col">Index</th>
+        <th scope="col">Post title</th>
+        <th scope="col">Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each_with_index do |post, i| %>
+        <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= post.title %></td>
+        <td><%= sanitize post.description %></td>
+        <td>
+            <%= link_to 'Show', post_path(post)  %> | 
+            <%= link_to 'Edit', edit_post_path(post) %> |
+            <%= link_to 'Destroy', post_path(post),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table
+  <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
+  <p class="text-center"><%= page_entries_info @posts %></p>
 </div>
 <% else %>
-    <table class="table">
-        Your table is empty
-    </table>
+  <div class="row">
+    <div class="col-4 dashboard">
+      <h1 class="display-3">Título</h1>
+      <ul>
+        <li>Prueba</li>
+        <li>Prueba</li>
+        <li>Prueba</li>
+      </ul>
+    </div>
+    <div class="col-8">
+    </div>
+  </div>
 <% end %>
