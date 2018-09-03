@@ -45,6 +45,8 @@ gem "font-awesome-rails"
 gem 'tinymce-rails'
 # breadcrumb
 gem 'loaf'
+# Facebook login
+gem 'omniauth-facebook'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
