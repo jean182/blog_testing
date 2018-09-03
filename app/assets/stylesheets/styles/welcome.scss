@@ -1,7 +1,14 @@
 .dashboard {
   background-color: $pure-blue;
-  border-radius: 1rem
+  border-radius: 1rem;
   ul {
     list-style-type: none;
+  }
+
+  img {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
   }
 }
