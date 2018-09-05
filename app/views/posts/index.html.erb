@@ -1,6 +1,6 @@
 <h1>Listing posts</h1>
 <% if user_signed_in?   %>
-<%= link_to 'New Post', new_post_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} if current_user.editor? %>
+<%= link_to 'New Post', new_post_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-post', 'data-backdrop' => 'static', 'data-keyboard' => 'true'} if current_user.editor? %>
 <% end %>
 <br>
 <div class="table-responsive-sm">
@@ -18,7 +18,7 @@
             <tr>
             <th scope="row"><%= i+1 %></th>
             <td><%= post.title %></td>
-            <td><%= sanitize post.description %></td>
+            <td><%= sanitize(post.description.truncate(20)) %></td>
             <td>
                 <%= link_to 'Show', post_path(post)  %> 
                 <% if user_signed_in? %>
@@ -35,7 +35,7 @@
     <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
     <%= page_entries_info @posts %>
 </div>
-<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modal-post" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">	
     </div>

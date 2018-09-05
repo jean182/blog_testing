@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <%= link_to "Blog", root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
+    <div class="navbar-collapse offcanvas-collapse" id="navbarMobile">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <li><%= link_to 'Posts', posts_path, class: 'nav-link' %></li>
@@ -27,8 +27,7 @@
         <li class="nav-item">
           <%= link_to "About", about_path, class: "nav-link" %>
         </li>
-      </ul>
-    
+      </ul> 
 
     <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
@@ -58,5 +57,4 @@
         <% end %>
      </ul>
      </div>
-
 </nav>
