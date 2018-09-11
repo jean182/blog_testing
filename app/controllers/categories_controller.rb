@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_admin!, except:[:index, :show]
   def index
     @categories = Category.paginate(page: params[:page], per_page: 4)
   end
@@ -9,6 +10,10 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -29,6 +34,14 @@ class CategoriesController < ApplicationController
       redirect_to category
     else
       render :edit 
+    end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    if @category.destroy
+      redirect_to categories_path
+      flash[:success] = "Deleted succesfully."
     end
   end
 

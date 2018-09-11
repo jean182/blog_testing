@@ -1,5 +1,7 @@
 <h1>Listing Categories</h1>
-<%= link_to 'New article', new_category_path %>
+<% if user_signed_in?   %>
+<%=  link_to 'New category', new_category_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-category'} if current_user.admin? %>
+<% end %>
 <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
   <div class="card-deck">
     <% @categories.each do |category| %>
@@ -19,3 +21,9 @@
   </div>
   <br>
 <%= will_paginate @categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
+<div id="modal-category" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">	
+    </div>
+  </div>
+</div>
