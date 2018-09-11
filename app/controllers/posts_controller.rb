@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def edit
     breadcrumb post.title, post_path(post)
-    build_has_categories
+    build_has_tags
   end
 
   def create
@@ -61,12 +61,12 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, category_ids: [])
+    params.require(:post).permit(:title, :description, tag_ids: [])
   end
 
-  def build_has_categories
-    Category.all.each do |category|
-      post.has_categories.build(category_id: category.id)
+  def build_has_tags
+    Tag.all.each do |tag|
+      post.has_tags.build(tag_id: tag.id)
     end
   end
 end

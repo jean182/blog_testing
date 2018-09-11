@@ -1,8 +1,8 @@
 <%= render 'shared/breadcrumb' %>
-<h3><%= @category.name %></h3>
+<h3><%= @tag.name %></h3>
 
-<% @category.posts.each do |post| %>
-  <div class="jumbotron" style='background-color: <%= @category.color %>;'>
+<% @tag.posts.each do |post| %>
+  <div class="jumbotron" style='background-color: <%= @tag.color %>;'>
     <h3> <%= post.title %> </h3>
     <p><%= sanitize post.description %></p>
     <%= link_to 'Eliminar', post, method: :delete, class: "btn btn-danger" %>
@@ -10,4 +10,4 @@
   </div>
 <%end%>
 
-<%= link_to  "Back", categories_path %>
+<%= link_to  "Back", tags_path %>

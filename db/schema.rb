@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180903161516) do
+ActiveRecord::Schema.define(version: 20180911211237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.string "color"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
@@ -31,13 +24,13 @@ ActiveRecord::Schema.define(version: 20180903161516) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  create_table "has_categories", force: :cascade do |t|
+  create_table "has_tags", force: :cascade do |t|
     t.bigint "post_id"
-    t.bigint "category_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_has_categories_on_category_id"
-    t.index ["post_id"], name: "index_has_categories_on_post_id"
+    t.index ["post_id"], name: "index_has_tags_on_post_id"
+    t.index ["tag_id"], name: "index_has_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -46,6 +39,13 @@ ActiveRecord::Schema.define(version: 20180903161516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +68,6 @@ ActiveRecord::Schema.define(version: 20180903161516) do
   end
 
   add_foreign_key "comments", "posts"
-  add_foreign_key "has_categories", "categories"
-  add_foreign_key "has_categories", "posts"
+  add_foreign_key "has_tags", "posts"
+  add_foreign_key "has_tags", "tags"
 end

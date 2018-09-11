@@ -1,11 +1,11 @@
 <%= form_with(model: @post) do |form| %>
 
   <%= render 'shared/errors', object: @post %>
-  <%= hidden_field_tag 'post[category_ids][]', nil %>
-  <% Category.all.each do |category| %>
+  <%= hidden_field_tag 'post[tag_ids][]', nil %>
+  <% Tag.all.each do |tag| %>
     <div class="form-check form-check-inline">
-      <%= check_box_tag 'post[category_ids][]', category.id, @post.categories.include?(category), id: dom_id(category), class: "form-check-input", type: "checkbox" %>
-      <%= label_tag dom_id(category), category.name, class: "form-check-label"%>
+      <%= check_box_tag 'post[tag_ids][]', tag.id, @post.tags.include?(tag), id: dom_id(tag), class: "form-check-input", type: "checkbox" %>
+      <%= label_tag dom_id(tag), tag.name, class: "form-check-label"%>
     </div>
   <% end %>
   <div class="form-group">

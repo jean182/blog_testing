@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/about', to: 'welcome#about', as: 'about'
   get 'welcome/dashboard', to: 'welcome#dashboard', as: 'dashboard'
 
-  resources :categories
+  resources :tags
 
   resources :posts do
     resources :comments
