@@ -1,0 +1,30 @@
+<%= render 'shared/breadcrumb' %>
+<h1>Listing Tags</h1>
+<% if user_signed_in?   %>
+<%=  link_to 'New tag', new_tag_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-tag'} if current_user.admin? %>
+<% end %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  <div class="card-deck">
+    <% @tags.each do |tag| %>
+      <div class="card">
+        <div class="card-header" style="background-color: <%= tag.color %>;">
+          <h5 class="card-title"><%= tag.name %></h5>
+        </div>
+        <div class="card-body">
+        <%= link_to 'Show', tag_path(tag), class: "card-link"  %>
+        <%= link_to 'Edit', edit_tag_path(tag), class: "card-link" %>
+        <%= link_to 'Destroy', tag_path(tag),
+        method: :delete,
+        data: { confirm: 'Are you sure?' }, class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+<%= will_paginate @tags, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
+<div id="modal-tag" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">	
+    </div>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 <h3>Tags</h3>
-<% Category.all.each do |category| %>
-  <% if @post.categories.include?(category) %>
+<% Tag.all.each do |tag| %>
+  <% if @post.tags.include?(tag) %>
     <h3 style="display:inline;">
-      <span style="background-color: <%= category.color %>" class="badge badge-secondary">
-        <%= link_to category.name, category, class: 'link-unstyled' %>
+      <span style="background-color: <%= tag.color %>" class="badge badge-secondary">
+        <%= link_to tag.name, tag, class: 'link-unstyled' %>
       </span>
     </h3>
   <% end %>
