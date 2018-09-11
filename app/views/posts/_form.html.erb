@@ -1,4 +1,4 @@
-<%= form_with(model: @post, local: true) do |form| %>
+<%= form_with(model: @post) do |form| %>
 
   <%= render 'shared/errors', object: @post %>
   <%= hidden_field_tag 'post[category_ids][]', nil %>
