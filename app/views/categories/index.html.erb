@@ -1,3 +1,4 @@
+<%= render 'shared/breadcrumb' %>
 <h1>Listing Categories</h1>
 <% if user_signed_in?   %>
 <%=  link_to 'New category', new_category_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-category'} if current_user.admin? %>

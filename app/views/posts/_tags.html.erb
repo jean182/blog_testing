@@ -3,7 +3,7 @@
   <% if @post.categories.include?(category) %>
     <h3 style="display:inline;">
       <span style="background-color: <%= category.color %>" class="badge badge-secondary">
-        <%= category.name %>
+        <%= link_to category.name, category, class: 'link-unstyled' %>
       </span>
     </h3>
   <% end %>

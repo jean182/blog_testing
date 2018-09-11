@@ -1,11 +1,13 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_admin!, except:[:index, :show]
+  breadcrumb 'Categories', :categories_path
   def index
     @categories = Category.paginate(page: params[:page], per_page: 4)
   end
 
   def show
     category
+    breadcrumb category.name, category_path(category)
   end
 
   def new
