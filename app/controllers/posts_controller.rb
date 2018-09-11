@@ -4,11 +4,14 @@ class PostsController < ApplicationController
   before_action :authenticate_editor!, only:[:new, :create, :update]
   before_action :authenticate_admin!, only:[:destroy]
   before_action :editor_is_post_owner!, only:[:edit]
+  breadcrumb 'All Posts', :posts_path
+
   def index
     @posts = Post.paginate(page: params[:page], per_page: 2)
   end
 
   def show
+    breadcrumb post.title, post_path(post)
   end
 
   def new
@@ -20,6 +23,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    breadcrumb post.title, post_path(post)
     build_has_categories
   end
 

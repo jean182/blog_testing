@@ -1,3 +1,4 @@
+<%= render 'shared/breadcrumb' %>
 <h1>Listing posts</h1>
 <% if user_signed_in?   %>
 <%= link_to 'New Post', new_post_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-post', 'data-backdrop' => 'static', 'data-keyboard' => 'true'} if current_user.editor? %>
