@@ -1,7 +1,7 @@
 <%= render 'shared/breadcrumb' %>
 <h3><%= @tag.name %></h3>
 
-<% @tag.posts.each do |post| %>
+<% @posts.each do |post| %>
   <div class="jumbotron" style='background-color: <%= @tag.color %>;'>
     <h3> <%= post.title %> </h3>
     <p><%= sanitize post.description %></p>
@@ -9,5 +9,7 @@
     <%= link_to "Leer Mas", post, class: "btn btn-primary" %>
   </div>
 <%end%>
+
+<%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, next_label: '&raquo;', previous_label: '&laquo;', list_classes: %w(pagination justify-content-center) %>
 
 <%= link_to  "Back", tags_path %>

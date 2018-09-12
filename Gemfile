@@ -47,6 +47,8 @@ gem 'tinymce-rails'
 gem 'loaf'
 # Facebook login
 gem 'omniauth-facebook'
+# Faker
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

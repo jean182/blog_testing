@@ -1,17 +1,18 @@
 class TagsController < ApplicationController
   before_action :authenticate_admin!, except:[:index, :show]
+  before_action :set_tag, except: [:index, :new, :create]
   breadcrumb 'Tags', :tags_path
   def index
     @tags = Tag.paginate(page: params[:page], per_page: 4)
   end
 
   def show
-    tag
-    breadcrumb tag.name, tag_path(tag)
+    breadcrumb @tag.name, tag_path(@tag)
+    @posts = @tag.posts.paginate(page: params[:page], per_page: 10)
   end
 
   def new
-    @tag = tag.new
+    @tag = Tag.new
     respond_to do |format|
       format.html
       format.js
@@ -19,7 +20,7 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = tag.new(tag_params)
+    @tag = Tag.new(tag_params)
     if @tag.save
       redirect_to @tag
     else
@@ -28,19 +29,19 @@ class TagsController < ApplicationController
   end
 
   def edit
-    tag
+    breadcrumb @tag.name, tag_path(@tag)
+    breadcrumb 'Edit', edit_tag_path(@tag)
   end
 
   def update
-    if tag.update(tag_params)
-      redirect_to tag
+    if @tag.update(tag_params)
+      redirect_to @tag
     else
       render :edit 
     end
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
     if @tag.destroy
       redirect_to tags_path
       flash[:success] = "Deleted succesfully."
@@ -49,7 +50,7 @@ class TagsController < ApplicationController
 
   private
 
-  def tag
+  def set_tag
     @tag ||= Tag.find(params[:id])
   end
 

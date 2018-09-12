@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   end
 
   def editor_is_post_owner!
-    redirect_to posts_path, :flash => { :error => "You don't have the permissions to edit this! "} unless user_signed_in? && current_user.id == post.user_id
+    redirect_to posts_path, :flash => { :error => "You don't have the permissions to edit this! "} unless user_signed_in? && current_user.id == @post.user_id
   end
 end
