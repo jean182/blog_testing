@@ -8,16 +8,14 @@
     <table class="table table-bordered">
         <thead>    
             <tr>
-                <th scope="col">Index</th>
                 <th scope="col">Post title</th>
                 <th scope="col">Description</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <% @posts.each_with_index do |post, i| %>
+            <% @posts.each do |post| %>
             <tr>
-            <th scope="row"><%= i+1 %></th>
             <td><%= post.title %></td>
             <td><%= sanitize(sanitize(post.description, tags: ['h1']).truncate(150))%></td>
             <td>

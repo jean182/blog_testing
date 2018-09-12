@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :post, except: [:index, :new, :create]
+  before_action :set_post, except: [:index, :new, :create]
   before_action :authenticate_editor!, only:[:new, :create, :update]
   before_action :authenticate_admin!, only:[:destroy]
   before_action :editor_is_post_owner!, only:[:edit]
   breadcrumb 'All Posts', :posts_path
 
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 2)
+    @posts = Post.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    breadcrumb post.title, post_path(post)
+    breadcrumb @post.title, post_path(@post)
   end
 
   def new
@@ -23,7 +23,8 @@ class PostsController < ApplicationController
   end
 
   def edit
-    breadcrumb post.title, post_path(post)
+    breadcrumb @post.title, post_path(@post)
+    breadcrumb 'Edit', edit_post_path(@post)
     build_has_tags
   end
 
@@ -56,7 +57,7 @@ class PostsController < ApplicationController
 
   private
 
-  def post
+  def set_post
     @post ||= Post.find(params[:id])
   end
 
@@ -66,7 +67,7 @@ class PostsController < ApplicationController
 
   def build_has_tags
     Tag.all.each do |tag|
-      post.has_tags.build(tag_id: tag.id)
+      @post.has_tags.build(tag_id: tag.id)
     end
   end
 end
